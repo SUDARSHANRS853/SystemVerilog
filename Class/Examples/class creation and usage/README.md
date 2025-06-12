@@ -32,12 +32,12 @@ module tb;
   
 endmodule
 ```
-
+```
 // Output
 addr : 0 | data : 0
 addr : 10 | data : 100
 addr : 100 | data : 200
-
+```
 # Ex2
 ```
 class packet;
@@ -76,7 +76,7 @@ module tb;
   
 endmodule
 ```
-
+```
 // Output
  addr : 0 | data : 0 
  addr : 0 | data : 0 
@@ -84,4 +84,4 @@ endmodule
  addr : 0 | data : 0 
  addr : 10 | data : 20 
  addr : 100 | data : 200
-
+```
