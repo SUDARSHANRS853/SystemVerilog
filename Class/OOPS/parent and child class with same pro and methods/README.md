@@ -1,7 +1,7 @@
 # Inheritance
 ## New classes are created by inheriting properties and methods defined in an existing class.
 ### Existing class is called the base class (parent class), and the new class is referred to as the derived class (child class).
-# In case of parent and child class with same prop. and methods are there. the parent class prop. and methods are overridden by child class prop. and methods.
+## In case of parent and child class with same prop. and methods are there. the parent class prop. and methods are overridden by child class prop. and methods.
 ```
 class parent;
   int x;
