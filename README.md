@@ -1,2 +1,2 @@
 # SystemVerilog
-## Hai everypne Im in System verilog
+## Hai everyone Im in System verilog
