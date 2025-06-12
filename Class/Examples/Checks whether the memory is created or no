@@ -1,3 +1,4 @@
+#Checks whether the memory is created or not
 class packet;
   bit [7:0] addr;
   bit [7:0] data;
