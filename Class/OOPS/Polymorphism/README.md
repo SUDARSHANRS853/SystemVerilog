@@ -1,6 +1,6 @@
 # Polymorphism
 ```
-Polymorphism is an ability to appear in many forms. In OOPS, multiple routines sharing a common name is termed as Polymorphism
+1. Polymorphism is an ability to appear in many forms. In OOPS, multiple routines sharing a common name is termed as Polymorphism
 In SV (SystemVerilog), Polymorphism allows a parent class handler to hold sub class object and access the methods of those child classes from the parent class handler.
 To achieve this, functions/tasks in SV are declared as virtual functions/tasks, which allow child classes to override the behaviour of the function/task.
 Polymorphism : we are accessing the methods of child class using parent handle
