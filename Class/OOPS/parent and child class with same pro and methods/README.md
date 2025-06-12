@@ -37,7 +37,7 @@ endmodule
 //Output
 Hi I'm in child class
 ```
-# printing both displays with single child object...just add super.display() inside display() function of child class
+## printing both displays with single child object...just add super.display() inside display() function of child class
 ```
 class parent;
   int x;
@@ -74,7 +74,7 @@ endmodule
 Hi I'm in parent class
 Hi I'm in child class
 ```
-# Inheritance : child handle is allowed to access the properties and methods of parent class
+## Inheritance : child handle is allowed to access the properties and methods of parent class
 ```
 class parent;
   int x;
