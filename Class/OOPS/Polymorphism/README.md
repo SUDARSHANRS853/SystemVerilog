@@ -69,7 +69,7 @@ module tb;
   
 endmodule
 ```
-# Ex2 : virtual keyword in only A
+## Ex2 : virtual keyword in only A
 ```
 class A;
   
@@ -112,7 +112,7 @@ module tb;
   
 endmodule
 ```
-# Ex3 : virtual keyword in only B and C
+## Ex3 : virtual keyword in only B and C
 ```
 class A;
   
@@ -155,7 +155,7 @@ module tb;
   
 endmodule
 ```
-# Ex4 : virtual in A,B,C
+## Ex4 : virtual in A,B,C
 ```
 class A;
   
@@ -199,7 +199,7 @@ module tb;
   
 endmodule
 ```
-# Ex5 : virtual in A,B,C and c = new() , b = new()
+## Ex5 : virtual in A,B,C and c = new() , b = new()
 
 ```
 class A;
@@ -245,7 +245,7 @@ module tb;
   
 endmodule
 ```
-# Ex6 :
+## Ex6 :
 ```
 class A;
   
