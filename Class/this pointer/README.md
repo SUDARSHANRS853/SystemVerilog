@@ -1,6 +1,6 @@
-#'this' pointer - it refers to the prop.and methods of same class
-#used to distinguish class prop. and function arguments when they are having same variable
-
+# 'this' pointer - it refers to the prop.and methods of same class
+# used to distinguish class prop. and function arguments when they are having same variable
+```
 class packet;
   int a;
   int b;
@@ -31,6 +31,7 @@ module tb;
   end
   
 endmodule
+```
 
 //Output
 a = 10 | b = 20
