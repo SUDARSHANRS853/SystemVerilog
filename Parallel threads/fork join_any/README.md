@@ -29,7 +29,7 @@ endmodule
 ```
 Output
 ```
-*BEFORE FORK..JOIN_ANY*
+        *BEFORE FORK..JOIN_ANY*
                    5	Thread B
                    7	Thread D
                   10	Thread C
@@ -67,7 +67,7 @@ endmodule
 ```
 Output
 ```
-*BEFORE FORK..JOIN_ANY*
+         *BEFORE FORK..JOIN_ANY*
                   10	Thread C
                   12	Thread D
                   16	Thread E
