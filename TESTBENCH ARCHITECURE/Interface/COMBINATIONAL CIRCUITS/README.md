@@ -194,3 +194,101 @@ a=0,b=1,c=0,d=1,bo=1
 a=0,b=0,c=1,d=1,bo=1
 a=1,b=0,c=1,d=0,bo=0
 ```
+## 5.MUX21
+```
+   interface intf;
+     logic [1:0]i;
+     logic s,y;
+     modport DUT(input i,s,output y);
+     modport TB(input y,output i,s);
+   endinterface
+
+//DUT
+module mux21(intf.DUT inf);
+  assign inf.y=(~(inf.s)&(inf.i[0]))|((inf.s)&(inf.i[1]));
+endmodule
+
+//TESTBENCH
+module test(intf.TB inf);
+  initial begin
+    repeat(10)
+      begin
+        {inf.i,inf.s}=$random;
+        #10;
+      end
+  end
+  initial begin
+    $monitor("i=%b,s=%b,y=%b",inf.i,inf.s,inf.y);
+  end
+endmodule
+
+//TOP
+module top;
+  //instantiation of interface
+  intf inf();
+  //instantiation of DUT
+  mux21 dut(inf);
+  //instantiation of TEST
+  test tb(inf);
+endmodule
+```
+Output
+```
+i=10,s=0,y=0
+i=00,s=1,y=0
+i=01,s=1,y=0
+i=10,s=1,y=1
+i=01,s=0,y=1
+i=00,s=1,y=0
+i=10,s=1,y=1
+```
+## 6.MUX41
+```
+interface intf;
+  logic [3:0]i;
+  logic [1:0]s;
+  logic y;
+  modport DUT(input i,s,output y);
+  modport TB(input y,output i,s);
+endinterface
+//DUT
+module mux41(intf.DUT inf);
+  assign inf.y=(inf.i[0]&(~inf.s[1])&(~inf.s[0]))|
+                (inf.i[1]&(~inf.s[1])&(inf.s[0]))|
+                 (inf.i[3]&(inf.s[1])&(~inf.s[0]))|
+                  (inf.i[0]&(inf.s[1])&(inf.s[0]));
+endmodule
+
+//TESTBENCH
+module test(intf.TB inf);
+  initial begin
+    repeat(10)
+      begin
+        {inf.i,inf.s}=$random;
+        #10;
+      end
+  end
+  initial begin
+    $monitor("i=%b,s=%b,y=%b",inf.i,inf.s,inf.y);
+  end
+endmodule
+
+//Top
+module top;
+  intf inf();
+  mux41 dut(inf);
+  test tb(inf);
+endmodule
+```
+Output
+```
+i=1001,s=00,y=1
+i=0000,s=01,y=0
+i=0010,s=01,y=1
+i=1000,s=11,y=0
+i=0011,s=01,y=1
+i=1001,s=01,y=0
+i=0100,s=10,y=0
+i=0000,s=01,y=0
+i=0011,s=01,y=1
+```
