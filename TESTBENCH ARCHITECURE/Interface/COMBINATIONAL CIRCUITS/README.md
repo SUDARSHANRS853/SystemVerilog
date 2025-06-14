@@ -148,3 +148,48 @@ a=0,b=1,c=0,s=1,co=0
 a=0,b=0,c=1,s=1,co=0
 a=1,b=0,c=1,s=0,co=1
 ```
+## 4.Full Substractor
+```
+interface intf;
+  logic a,b,c,d,bo;
+  modport DUT(input a,b,c,output d,bo);
+  modport TB(input d,bo,output a,b,c);
+endinterface
+
+//DUT
+module fs(intf.DUT inf);
+  assign {inf.bo,inf.d}=inf.a-inf.b-inf.c;
+endmodule
+
+//TESTBENCH
+module test(intf.TB inf);
+  initial begin
+    repeat(10)
+      begin
+        {inf.a,inf.b,inf.c}=$random;
+        #10;
+      end
+  end
+  initial begin
+    $monitor("a=%b,b=%b,c=%b,d=%b,bo=%b",inf.a,inf.b,inf.c,inf.d,inf.bo);
+  end
+    
+endmodule
+
+//TOP
+module top;
+  intf inf();
+  fs dut(inf);
+  test tb(inf);
+endmodule
+```
+Output
+```
+a=1,b=0,c=0,d=1,bo=0
+a=0,b=0,c=1,d=1,bo=1
+a=0,b=1,c=1,d=0,bo=1
+a=1,b=0,c=1,d=0,bo=0
+a=0,b=1,c=0,d=1,bo=1
+a=0,b=0,c=1,d=1,bo=1
+a=1,b=0,c=1,d=0,bo=0
+```
