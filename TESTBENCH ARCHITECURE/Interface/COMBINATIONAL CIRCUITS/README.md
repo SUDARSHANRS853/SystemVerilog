@@ -389,3 +389,52 @@ i=00010,s=010,y=0
 i=00000,s=001,y=0
 i=00001,s=101,y=x
 ```
+## 8*1 MUX using Turnary operator
+```
+interface intf;
+  logic [7:0]i;
+  logic [2:0]s;
+  logic y;
+  modport DUT(input i,s,output y);
+  modport TB(input y,output i,s);
+endinterface
+//DUT
+module mux41(intf.DUT inf);
+  assign inf.y=(inf.s[2])?((inf.s[1])?((inf.s[0])?inf.i[7]:inf.i[6]):((inf.s[0])?inf.i[5]:inf.i[4])):((inf.s[1])?((inf.s[0])?inf.i[3]:inf.i[2]):(inf.s[0])?inf.i[1]:inf.i[0]);
+ 
+endmodule
+
+//TESTBENCH
+module test(intf.TB inf);
+  initial begin
+    repeat(10)
+      begin
+        {inf.i,inf.s}=$random;
+        #10;
+      end
+  end
+  initial begin
+    $monitor("i=%b,s=%b,y=%b",inf.i,inf.s,inf.y);
+  end
+endmodule
+
+//Top
+module top;
+  intf inf();
+  mux41 dut(inf);
+  test tb(inf);
+endmodule
+```
+Output
+```
+i=10100100,s=100,y=0
+i=11010000,s=001,y=0
+i=11000001,s=001,y=0
+i=11001100,s=011,y=1
+i=01100001,s=101,y=1
+i=00110001,s=101,y=1
+i=10001100,s=101,y=0
+i=01000010,s=010,y=0
+i=01100000,s=001,y=0
+i=10100001,s=101,y=1
+```
