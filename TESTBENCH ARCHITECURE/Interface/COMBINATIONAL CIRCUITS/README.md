@@ -68,7 +68,7 @@ interface intf;
   modport TB(input d,bo,output a,b);
 endinterface
 module hs(intf.DUT inf);
-  assign {inf.d,inf.bo}=inf.a-inf.b;
+  assign {inf.bo,inf.d}=inf.a-inf.b;
 endmodule
  
 //test bench
@@ -100,4 +100,51 @@ a=0,b=0,d=0,bo=0
 a=0,b=1,d=1,bo=1
 a=1,b=1,d=0,bo=0
 a=0,b=1,d=1,bo=1
+```
+## 3.Fulladder
+```
+interface intf;
+  logic a,b,c,s,co;
+  modport DUT(input a,b,c,output s,co);
+  modport TB(input s,co,output a,b,c);
+endinterface
+
+//DUT
+module fa(intf.DUT inf);
+  assign {inf.co,inf.s}=inf.a+inf.b+inf.c;
+endmodule
+
+// testbench
+module test(intf.TB inf);
+  initial begin
+    repeat(10)
+    begin
+    {inf.a,inf.b,inf.c}=$random;
+    #10;
+  end
+  end
+  initial begin
+    $monitor("a=%b,b=%b,c=%b,s=%b,co=%b",inf.a,inf.b,inf.c,inf.s,inf.co);
+  end
+endmodule
+
+//top
+module top;
+  //interface instantiation
+  intf inf();
+  //instantiation of dut
+  fa dut(inf);
+  //instantiation of tb
+  test tb(inf);
+endmodule
+```
+Output
+```
+a=1,b=0,c=0,s=1,co=0
+a=0,b=0,c=1,s=1,co=0
+a=0,b=1,c=1,s=0,co=1
+a=1,b=0,c=1,s=0,co=1
+a=0,b=1,c=0,s=1,co=0
+a=0,b=0,c=1,s=1,co=0
+a=1,b=0,c=1,s=0,co=1
 ```
