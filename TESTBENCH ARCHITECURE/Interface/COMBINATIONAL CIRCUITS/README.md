@@ -292,3 +292,50 @@ i=0100,s=10,y=0
 i=0000,s=01,y=0
 i=0011,s=01,y=1
 ```
+## 3*1 MUX USING TURNARY OPERATOR
+```
+interface intf;
+  logic [2:0]i;
+  logic [1:0]s;
+  logic y;
+  modport DUT(input i,s,output y);
+  modport TB(input y,output i,s);
+endinterface
+
+//DUT
+module mux41(intf.DUT inf);
+  assign inf.y=(inf.s[1])?((inf.s[0])?1'bx:inf.i[2]):((inf.s[0])?inf.i[1]:inf.i[0]);
+endmodule
+
+//TESTBENCH
+module test(intf.TB inf);
+  initial begin
+    repeat(10)
+      begin
+        {inf.i,inf.s}=$random;
+        #10;
+      end
+  end
+  initial begin
+    $monitor("i=%b,s=%b,y=%b",inf.i,inf.s,inf.y);
+  end
+endmodule
+
+//Top
+module top;
+  intf inf();
+  mux41 dut(inf);
+  test tb(inf);
+endmodule
+```
+Output
+```
+i=001,s=00,y=1
+i=000,s=01,y=0
+i=010,s=01,y=1
+i=000,s=11,y=x
+i=011,s=01,y=1
+i=001,s=01,y=0
+i=100,s=10,y=1
+i=000,s=01,y=0
+i=011,s=01,y=1
