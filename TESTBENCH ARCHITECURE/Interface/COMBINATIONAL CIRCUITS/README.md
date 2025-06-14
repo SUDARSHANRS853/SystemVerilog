@@ -22,13 +22,12 @@ interface intf;
   endinterface
 
 //DUT
-
 module ha(intf.DUT inf);
   assign {inf.c,inf.s}=inf.a+inf.b;
   //assign {inf.a,inf.b}=inf.s+inf.c;
 endmodule
-//testbench
 
+//testbench
 module test(intf.TB inf);
   initial begin
     repeat(5)
@@ -37,7 +36,6 @@ module test(intf.TB inf);
         #10;
       end
   end
-
 initial begin
   $monitor("a=%b,b=%b,s=%b,c=%b",inf.a,inf.b,inf.s,inf.c);
 end
@@ -67,6 +65,8 @@ interface intf;
   modport DUT(input a,b,output d,bo);
   modport TB(input d,bo,output a,b);
 endinterface
+
+//DUT
 module hs(intf.DUT inf);
   assign {inf.bo,inf.d}=inf.a-inf.b;
 endmodule
@@ -84,6 +84,7 @@ module test(intf.TB inf);
     $monitor("a=%b,b=%b,d=%b,bo=%b",inf.a,inf.b,inf.d,inf.bo);
   end
 endmodule
+
 //top module
 module top;
   //instantiate the interface
