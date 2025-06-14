@@ -389,7 +389,7 @@ i=00010,s=010,y=0
 i=00000,s=001,y=0
 i=00001,s=101,y=x
 ```
-## 8*1 MUX using Turnary operator
+## 9. 8*1 MUX using Turnary operator
 ```
 interface intf;
   logic [7:0]i;
@@ -438,3 +438,51 @@ i=01000010,s=010,y=0
 i=01100000,s=001,y=0
 i=10100001,s=101,y=1
 ```
+## 10. 2*4 Decoder
+```
+interface intf;
+  logic [1:0]i;
+  logic [3:0]d;
+  modport DUT(input i,output d);
+  modport TB(input d,output i);
+endinterface
+//DUT
+module Decoder24(intf.DUT inf);
+  assign inf.d[0]=(~inf.i[0])&(~inf.i[1]);
+  assign inf.d[1]=(inf.i[0])&(~inf.i[1]);
+  assign inf.d[2]=(~inf.i[0])&(inf.i[1]);
+  assign inf.d[3]=(inf.i[0])&(inf.i[1]);
+ 
+endmodule
+
+//TESTBENCH
+module test(intf.TB inf);
+  initial begin
+    repeat(10)
+      begin
+        {inf.i}=$random;
+        #10;
+      end
+  end
+  initial begin
+    $monitor("i=%b,d=%b",inf.i,inf.d);
+  end
+endmodule
+
+//Top
+module top;
+  intf inf();
+  Decoder24 dut(inf);
+  test tb(inf);
+endmodule
+```
+Output
+```
+i=00,d=0001
+i=01,d=0010
+i=11,d=1000
+i=01,d=0010
+i=10,d=0100
+i=01,d=0010
+```
+
