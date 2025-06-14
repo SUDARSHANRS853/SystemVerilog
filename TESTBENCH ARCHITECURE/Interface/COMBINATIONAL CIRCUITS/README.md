@@ -485,4 +485,57 @@ i=01,d=0010
 i=10,d=0100
 i=01,d=0010
 ```
+## 3*8 decoder
+```
+interface intf;
+  logic [2:0]i;
+  logic [7:0]d;
+  modport DUT(input i,output d);
+  modport TB(input d,output i);
+endinterface
+//DUT
+module Decoder38(intf.DUT inf);
+  assign inf.d[0]=(~inf.i[0])&(~inf.i[1])&(~inf.i[2]);
+  assign inf.d[1]=(inf.i[0])&(~inf.i[1])&(~inf.i[2]);
+  assign inf.d[2]=(~inf.i[0])&(inf.i[1])&(~inf.i[2]);
+  assign inf.d[3]=(inf.i[0])&(inf.i[1])&(~inf.i[2]);
+  assign inf.d[4]=(~inf.i[0])&(~inf.i[1])&(inf.i[2]);
+  assign inf.d[5]=(inf.i[0])&(~inf.i[1])&(inf.i[2]);
+  assign inf.d[6]=(~inf.i[0])&(inf.i[1])&(inf.i[2]);
+  assign inf.d[7]=(inf.i[0])&(inf.i[1])&(inf.i[2]);
+  
+ 
+endmodule
+
+//TESTBENCH
+module test(intf.TB inf);
+  initial begin
+    repeat(10)
+      begin
+        {inf.i}=$random;
+        #10;
+      end
+  end
+  initial begin
+    $monitor("i=%b,d=%b",inf.i,inf.d);
+  end
+endmodule
+
+//Top
+module top;
+  intf inf();
+  Decoder38 dut(inf);
+  test tb(inf);
+endmodule
+```
+Output
+```
+i=100,d=00010000
+i=001,d=00000010
+i=011,d=00001000
+i=101,d=00100000
+i=010,d=00000100
+i=001,d=00000010
+i=101,d=00100000
+```
 
