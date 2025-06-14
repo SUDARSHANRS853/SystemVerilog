@@ -119,8 +119,8 @@ module fork_join;
     $display("BEFORE FORK..JOIN");                                     
     
     fork
-      begin
-      end
+     
+     
       begin
       #15 $display($time,"\tThread A");
       
@@ -137,13 +137,22 @@ module fork_join;
       #2  $display($time,"\tThread D");
        
       end
+      begin
+      end
  join_any
    
-	//wait fork;
-      #7  $display($time,"\tThread E");
+	
+        $display($time,"\tThread E");
  
     $display("AFTER FORK..JOIN");
     
     $finish;
-  end
+  end
 endmodule
+```
+Output
+```
+BEFORE FORK..JOIN
+                   0	Thread E
+AFTER FORK..JOIN
+```
