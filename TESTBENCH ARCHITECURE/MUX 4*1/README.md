@@ -254,3 +254,64 @@ module top;
 endmodule
 ```
 OUTPUT
+```
+[GEN] : sel = 01 | I = 0010 | Y = 0
+[GEN] : sel = 10 | I = 0100 | Y = 0
+[GEN] : sel = 11 | I = 1011 | Y = 0
+[GEN] : sel = 11 | I = 0101 | Y = 0
+[GEN] : sel = 11 | I = 1111 | Y = 0
+[GEN] : sel = 11 | I = 0110 | Y = 0
+[GEN] : sel = 00 | I = 0011 | Y = 0
+[GEN] : sel = 00 | I = 1111 | Y = 0
+[GEN] : sel = 00 | I = 0110 | Y = 0
+[GEN] : sel = 11 | I = 0101 | Y = 0
+
+[DRV] : sel = 01 | I = 0010 | Y = 0
+[MON] : sel = 01 | I = 0010 | Y = 1
+TEST PASSED
+[SCR] : sel = 01 | I = 0010 | Y = 1
+
+[DRV] : sel = 10 | I = 0100 | Y = 0
+[MON] : sel = 10 | I = 0100 | Y = 1
+TEST PASSED
+[SCR] : sel = 10 | I = 0100 | Y = 1
+
+[DRV] : sel = 11 | I = 1011 | Y = 0
+[MON] : sel = 11 | I = 1011 | Y = 1
+TEST PASSED
+[SCR] : sel = 11 | I = 1011 | Y = 1
+
+[DRV] : sel = 11 | I = 0101 | Y = 0
+[MON] : sel = 11 | I = 0101 | Y = 0
+TEST PASSED
+[SCR] : sel = 11 | I = 0101 | Y = 0
+
+[DRV] : sel = 11 | I = 1111 | Y = 0
+[MON] : sel = 11 | I = 1111 | Y = 1
+TEST PASSED
+[SCR] : sel = 11 | I = 1111 | Y = 1
+
+[DRV] : sel = 11 | I = 0110 | Y = 0
+[MON] : sel = 11 | I = 0110 | Y = 0
+TEST PASSED
+[SCR] : sel = 11 | I = 0110 | Y = 0
+
+[DRV] : sel = 00 | I = 0011 | Y = 0
+[MON] : sel = 00 | I = 0011 | Y = 1
+TEST PASSED
+[SCR] : sel = 00 | I = 0011 | Y = 1
+
+[DRV] : sel = 00 | I = 1111 | Y = 0
+[MON] : sel = 00 | I = 1111 | Y = 1
+TEST PASSED
+[SCR] : sel = 00 | I = 1111 | Y = 1
+
+[DRV] : sel = 00 | I = 0110 | Y = 0
+[MON] : sel = 00 | I = 0110 | Y = 0
+TEST PASSED
+[SCR] : sel = 00 | I = 0110 | Y = 0
+
+[DRV] : sel = 11 | I = 0101 | Y = 0
+[MON] : sel = 11 | I = 0101 | Y = 0
+TEST PASSED
+```
