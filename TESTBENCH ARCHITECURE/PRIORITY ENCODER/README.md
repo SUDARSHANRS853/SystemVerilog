@@ -1,4 +1,4 @@
-# PRIORITY ENCODER VERIFICATION
+# DFF VERIFICATION
 ## DUT
 ```
 module dff(dff_intf inf);
