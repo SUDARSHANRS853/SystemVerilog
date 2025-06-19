@@ -208,7 +208,7 @@ class environment;
 endclass
 ```
 
-## TOP LEVEL TESTBENCH\
+## TOP LEVEL TESTBENCH
 ```
 module tb;
 
